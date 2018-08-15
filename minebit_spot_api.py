@@ -132,21 +132,18 @@ class MinebitApiClient(object):
     def _encode(self, s):
         return urllib.quote(s, safe='')
 
-    # 获取汇率
     def change_rate(self, coin = ''):
       params = {
         "coin":coin
       }
       return self.post("/v1/market/change_rate", params)
 
-    # 获取现货行情信息
     def ticker(self, symbols = ''):
       params = {
         "symbols":symbols
       }
       return self.post("/v1/market/quote", params)
 
-    # 获取现货市场深度信息
     def depth(self, symbol = '', fillter_type = 1):
       params = {
         "symbol":symbol,
@@ -154,7 +151,6 @@ class MinebitApiClient(object):
       }
       return self.post("/v1/market/depth", params)
 
-    # 现货下单接口
     def order(self, symbol = '', price = '', amount = '', order_type = ''):
       params = {
         "symbol":symbol,
@@ -164,14 +160,6 @@ class MinebitApiClient(object):
       }
       return self.post("/v1/trade/order", params)
 
-    # 现货批量下单接口
-    def orders(self, order_list = ''):
-      params = {
-        "order_list":order_list,
-      }
-      return self.post("/v1/trade/orders", params)
-
-    # 现货撤单接口
     def cancel_order(self, symbol = '', order_id = ''):
       params = {
         "symbol":symbol,
@@ -179,29 +167,12 @@ class MinebitApiClient(object):
       }
       return self.post("/v1/trade/cancel_order", params)
 
-    # 现货撤单接口
-    def cancel_orders(self, order_list = ''):
-      params = {
-        "order_list":str(order_list)
-      }
-      return self.post("/v1/trade/cancel_orders", params)
-
-    # 现货查询订单接口
     def order_info(self, order_id = ''):
       params = {
         "order_id":str(order_id)
       }
       return self.post("/v1/trade/order_info", params)
 
-    # 现货批量查询订单接口
-    def orders_info(self, order_list = ''):
-      params = {
-        "order_list":order_list
-      }
-      print order_list
-      return self.post("/v1/trade/orders_info", params)
-
-    # 现货批量查询未成交订单接口
     def pending_orders(self, symbol = '', offset = 0, limit = 10):
       params = {
         "symbol":symbol,
@@ -210,7 +181,6 @@ class MinebitApiClient(object):
       }
       return self.post("/v1/trade/pending_orders", params)
 
-    # 现货批量查询未成交订单接口
     def finished_orders(self, symbol = '', offset = 0, limit = 10, start_time = 0, end_time = 0, side = 0):
       params = {
         "symbol":symbol,
@@ -219,7 +189,6 @@ class MinebitApiClient(object):
       }
       return self.post("/v1/trade/finished_orders", params)
 
-    # 查询全部资产信息接口
     def balances(self, coin=None):
       params = {
       }
@@ -233,16 +202,13 @@ if __name__ == "__main__":
   price =  0.07
   amount = 0.02
   api = MinebitApiClient("Rg2H9uEQ9WvaxjhUMjDTKdcA63cnfQWo", "Km4lNIIoF9kVM50hDdQUkTct4iP1mBP0")
-  #print "汇率接口:\r\n",api.change_rate("btc")
-  #print "行情接口:\r\n",api.ticker(symbol)
-  #print "深度接口:\r\n",api.depth(symbol, 1)
-  #print "下单接口:\r\n",api.order(symbol=symbol, price="0.07", amount="0.1", order_type="limit_buy")
-  #print "批量下单接口:\r\n",api.orders('["price":0.07,"num":0.02,"symbol":"eth_btc","type":"limit_buy"]')
-  #print "撤单接口:\r\n",api.cancel_order(symbol=symbol, order_id="1865")
-  #print "批量撤单接口:\r\n",api.cancel_orders('[{"order_id":1863}]')
-  #print "查询订单接口:\r\n",api.order_info(order_id="1865")
-  #print "批量查询订单接口:\r\n",api.orders_info(order_list="[{'order_id':1865}]")
-  #print "批量查询未成交订单接口:\r\n",api.pending_orders(symbol)
-  #print "批量查询已成交订单接口:\r\n",api.finished_orders(symbol)
-  #print "查询全部资产信息接口:\r\n",api.balances()
-  #print "查询某一资产信息接口:\r\n",api.balances(coin="eth")
+  #print "coin change rate:\r\n",api.change_rate("btc")
+  #print "ticker:\r\n",api.ticker(symbol)
+  #print "orderbook depth:\r\n",api.depth(symbol, 1)
+  #print "place order:\r\n",api.order(symbol=symbol, price="0.07", amount="0.1", order_type="limit_buy")
+  #print "cancel order:\r\n",api.cancel_order(symbol=symbol, order_id="1865")
+  #print "get order detail:\r\n",api.order_info(order_id="1865")
+  #print "get all pending orders:\r\n",api.pending_orders(symbol)
+  #print "get all finished orders:\r\n",api.finished_orders(symbol)
+  #print "get all balances:\r\n",api.balances()
+  #print "get balance of target coin:\r\n",api.balances(coin="eth")
