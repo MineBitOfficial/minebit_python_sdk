@@ -111,7 +111,7 @@ class MinebitApiClient(object):
         return self._parse(resp.read())
 
     def _parse(self, text):
-        print('Response:\n%s' % text)
+        #print('Response:\n%s' % text)
         result = json.loads(text)
         #if result["status"] == "success":
         #    return result
@@ -189,12 +189,16 @@ class MinebitApiClient(object):
       }
       return self.post("/v1/trade/finished_orders", params)
 
-    def balances(self, coin=None):
+    def balances(self):
       params = {
       }
-      if coin:
-        params["coin"] = coin
       return self.post("/v1/trade/balances", params)
+
+    def balance(self, coin=None):
+      params = {
+        "coin":coin
+      }
+      return self.post("/v1/trade/balance", params)
 
 if __name__ == "__main__":
   symbol = "eth_btc"
@@ -211,4 +215,4 @@ if __name__ == "__main__":
   #print "get all pending orders:\r\n",api.pending_orders(symbol)
   #print "get all finished orders:\r\n",api.finished_orders(symbol)
   #print "get all balances:\r\n",api.balances()
-  #print "get balance of target coin:\r\n",api.balances(coin="eth")
+  print "get balance of target coin:\r\n",api.balance(coin="eth")
