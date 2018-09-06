@@ -205,7 +205,7 @@ if __name__ == "__main__":
   order_type = "buy"
   price =  0.07
   amount = 0.02
-  api = MinebitApiClient("Rg2H9uEQ9WvaxjhUMjDTKdcA63cnfQWo", "Km4lNIIoF9kVM50hDdQUkTct4iP1mBP0")
+  api = MinebitApiClient("Rg2H9uEQ9WvaxjhUMjDTKdcA63cnfQwo", "Km4lNIIoF9kVM50hDdQUkTct4iP1mBp0")
   #print "coin change rate:\r\n",api.change_rate("btc")
   #print "ticker:\r\n",api.ticker(symbol)
   #print "orderbook depth:\r\n",api.depth(symbol, 1)
