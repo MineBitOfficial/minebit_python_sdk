@@ -192,13 +192,13 @@ class MinebitApiClient(object):
     def balances(self):
       params = {
       }
-      return self.post("/v1/trade/balances", params)
+      return self.post("/v1/userasset/balances", params)
 
     def balance(self, coin=None):
       params = {
         "coin":coin
       }
-      return self.post("/v1/trade/balance", params)
+      return self.post("/v1/userasset/balance", params)
 
 if __name__ == "__main__":
   symbol = "eth_btc"
